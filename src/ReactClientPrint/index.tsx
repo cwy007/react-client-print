@@ -5,7 +5,11 @@ import PrintSetting from 'react-client-print/PrintSetting';
 import PrintStore from 'react-client-print/store';
 import './index.less';
 
-const ReactClientPrint: FC<{ title: string }> = () => {
+export interface ReactClientPrintProps {
+  title: string;
+}
+
+const ReactClientPrint: FC<ReactClientPrintProps> = () => {
   console.log('foo->');
 
   const store = useMemo(
