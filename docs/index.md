@@ -4,7 +4,7 @@ hero:
   description: react + mobx + less + antd
   actions:
     - text: 快速上手
-      link: /
+      link: /demo/react-client-print
 features:
   - title: 打印模板
     emoji: 💎

@@ -8,9 +8,15 @@
     "baseUrl": "./",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "react-client-print": ["src"],
+      "react-client-print": ["./src"],
       "react-client-print/*": ["src/*", "*"]
     }
   },
-  "include": [".dumi/**/*", ".dumirc.ts", "src/**/*"]
+  "include": [
+    ".dumi/**/*",
+    ".dumirc.ts",
+    "src/**/*",
+    "types.d.ts",
+    "docs/examples/**/*"
+  ]
 }
