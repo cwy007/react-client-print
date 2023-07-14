@@ -44,6 +44,7 @@
     ]
   },
   "dependencies": {
+    "antd": "^5.4.0",
     "lodash": "^4.17.21",
     "mobx": "^6.9.1",
     "mobx-react-lite": "^4.0.3"
