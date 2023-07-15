@@ -3,14 +3,20 @@ import { makeAutoObservable } from 'mobx';
 import { TNode, TTemplate } from './components/TypographyCard/type';
 
 class PrintStore {
+  /** 模式 */
+  mode: 'display' | 'edit' = 'display';
+
   /** 打印份数 */
   numberOfCopies: number = 1;
 
   /** 打印模板 */
   templates: TTemplate[] = [];
 
+  /** 当前选中模板 */
+  selectedTemplate?: TTemplate;
+
   /** 默认模板名称 */
-  defaultTemplateName?: string;
+  // defaultTemplateName?: string;
 
   /** 业务数据 */
   dataSource: Record<string, any>[] = [];
@@ -41,25 +47,25 @@ class PrintStore {
   }
 
   /** 默认模板 */
-  get defaultTemplate() {
-    return this.templates.find((v) => v.name === this.defaultTemplateName);
-  }
+  // get defaultTemplate() {
+  //   return this.templates.find((v) => v.name === this.defaultTemplateName);
+  // }
 
   /** 将模板中的占位符替换为对应的值 */
   get replacedTemplate() {
-    if (this.defaultTemplateName) {
+    if (this.selectedTemplate) {
       const firstRecord = this.dataSource?.[0];
       const nodes: TNode[] = [];
-      this.defaultTemplate?.nodes.forEach((node) => {
+      this.selectedTemplate?.nodes.forEach((node) => {
         nodes.push({
           ...node,
           placeholder: firstRecord[node.placeholder?.slice(1, -1)]?.toString(),
         });
       });
       return {
-        ...this.defaultTemplate,
+        ...this.selectedTemplate,
         nodes,
-      };
+      } as TTemplate;
     }
 
     return undefined;

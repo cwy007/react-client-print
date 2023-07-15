@@ -13,7 +13,12 @@ const PrintPreview = () => {
       {/* {store.} */}
       {/* QRCodeBoard */}
       <TypographyCard
-      // mode=
+        mode={store.mode}
+        template={
+          store.mode === 'display'
+            ? store.replacedTemplate
+            : store.defaultTemplate
+        }
       />
     </div>
   );

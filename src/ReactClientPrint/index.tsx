@@ -42,7 +42,6 @@ const ReactClientPrint: FC<ReactClientPrintProps> = ({
       store.update({
         dataSource,
         templates,
-        defaultTemplateName,
         defaultFields,
       });
     }
@@ -55,6 +54,15 @@ const ReactClientPrint: FC<ReactClientPrintProps> = ({
       });
     }
   }, [fetchCustomFieldsSvc, store]);
+
+  useEffect(() => {
+    if (defaultTemplateName && !store.selectedTemplate) {
+      const selectedTemplate = store.templates.find(
+        (v) => v.name === defaultTemplateName,
+      );
+      store.update({ selectedTemplate });
+    }
+  }, [defaultTemplateName, store]);
 
   const clientPrintContext = useMemo(
     () => ({
