@@ -1,7 +1,7 @@
 import React, { useMemo, type FC } from 'react';
+import PrintPreview from 'react-client-print/components/PrintPreview';
+import PrintSetting from 'react-client-print/components/PrintSetting';
 import ClientPrintContext from 'react-client-print/context';
-import PrintPreview from 'react-client-print/PrintPreview';
-import PrintSetting from 'react-client-print/PrintSetting';
 import PrintStore from 'react-client-print/store';
 import './index.less';
 

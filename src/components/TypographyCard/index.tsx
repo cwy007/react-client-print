@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PrintPreview = () => {
+const TypographyCard = () => {
   console.log('bar-->');
 
   return (
@@ -11,4 +11,4 @@ const PrintPreview = () => {
   );
 };
 
-export default PrintPreview;
+export default TypographyCard;
