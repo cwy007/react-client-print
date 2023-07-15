@@ -33,12 +33,15 @@ class PrintStore {
   /** 辅助线 */
   enableRulerGuide: boolean = true;
 
+  /** 自动对齐 */
+  enableAutoAlign: boolean = true;
+
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
-  update(state: Partial<PrintStore>) {
-    Object.assign(this, state);
+  update(payload: Partial<PrintStore>) {
+    Object.assign(this, payload);
   }
 
   /** 默认字段 + 自定义字段 */
@@ -46,20 +49,16 @@ class PrintStore {
     return flatten([this.defaultFields, this.customFields]);
   }
 
-  /** 默认模板 */
-  // get defaultTemplate() {
-  //   return this.templates.find((v) => v.name === this.defaultTemplateName);
-  // }
-
   /** 将模板中的占位符替换为对应的值 */
   get replacedTemplate() {
     if (this.selectedTemplate) {
       const firstRecord = this.dataSource?.[0];
       const nodes: TNode[] = [];
-      this.selectedTemplate?.nodes.forEach((node) => {
+      this.selectedTemplate?.nodes?.forEach((node) => {
         nodes.push({
           ...node,
-          placeholder: firstRecord[node.placeholder?.slice(1, -1)]?.toString(),
+          placeholder:
+            firstRecord?.[node.placeholder?.slice(1, -1)]?.toString(),
         });
       });
       return {
@@ -69,6 +68,22 @@ class PrintStore {
     }
 
     return undefined;
+  }
+
+  /** 修改模板节点 */
+  updateNode(payload: { activeNode: TNode }) {
+    this.update({
+      activeNode: payload.activeNode,
+      selectedTemplate: {
+        ...this.selectedTemplate!,
+        nodes: (this.selectedTemplate?.nodes || []).map((n) => {
+          if (n.id === payload.activeNode?.id) {
+            return payload.activeNode;
+          }
+          return n;
+        }),
+      },
+    });
   }
 }
 

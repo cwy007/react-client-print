@@ -29,8 +29,7 @@ const TypographyCard = (props: TypographyCardProps) => {
         isNotEditing: mode !== 'edit',
       })}
     >
-      {/* QRCodeBoard */}
-      QRCodeBoard
+      TypographyCard
     </div>
   );
 };

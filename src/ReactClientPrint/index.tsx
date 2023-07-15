@@ -1,4 +1,4 @@
-import { toJS } from 'mobx';
+import { autorun, toJS } from 'mobx';
 import React, { useEffect, useMemo, type FC } from 'react';
 import PrintPreview from 'react-client-print/components/PrintPreview';
 import PrintSetting from 'react-client-print/components/PrintSetting';
@@ -29,23 +29,29 @@ const ReactClientPrint: FC<ReactClientPrintProps> = ({
   defaultFields,
   fetchCustomFieldsSvc,
 }) => {
-  console.log('dataSource', toJS(dataSource));
-  console.log('templates', toJS(templates));
-  console.log('defaultTemplateName', toJS(defaultTemplateName));
-  console.log('defaultFields', toJS(defaultFields));
-  console.log('fetchCustomFieldsSvc', toJS(fetchCustomFieldsSvc));
+  // console.log('dataSource', toJS(dataSource));
+  // console.log('templates', toJS(templates));
+  // console.log('defaultTemplateName', toJS(defaultTemplateName));
+  // console.log('defaultFields', toJS(defaultFields));
+  // console.log('fetchCustomFieldsSvc', toJS(fetchCustomFieldsSvc));
 
   const store = useMemo(() => new PrintStore(), []);
 
+  autorun(() => {
+    console.log('store-->6666', toJS(store));
+  });
+
   useEffect(() => {
-    if (store) {
-      store.update({
-        dataSource,
-        templates,
-        defaultFields,
-      });
-    }
-  }, [store, dataSource, templates, defaultTemplateName, defaultFields]);
+    store?.update({
+      dataSource,
+      templates,
+      defaultFields,
+    });
+  }, [
+    JSON.stringify(dataSource),
+    JSON.stringify(templates),
+    JSON.stringify(defaultFields),
+  ]);
 
   useEffect(() => {
     if (typeof fetchCustomFieldsSvc === 'function') {
@@ -53,7 +59,7 @@ const ReactClientPrint: FC<ReactClientPrintProps> = ({
         store.update({ customFields });
       });
     }
-  }, [fetchCustomFieldsSvc, store]);
+  }, []);
 
   useEffect(() => {
     if (defaultTemplateName && !store.selectedTemplate) {
@@ -62,7 +68,7 @@ const ReactClientPrint: FC<ReactClientPrintProps> = ({
       );
       store.update({ selectedTemplate });
     }
-  }, [defaultTemplateName, store]);
+  }, [defaultTemplateName]);
 
   const clientPrintContext = useMemo(
     () => ({
