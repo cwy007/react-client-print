@@ -1,8 +1,27 @@
 import classNames from 'classnames';
 import { toJS } from 'mobx';
 import React from 'react';
-import TemplateNode from './TemplateNode';
+import EditNode, { EditNodeProps } from './Edit';
+import ShowNode, { ShowNodeProps } from './Show';
 import { TypographyCardProps } from './type';
+
+const TemplateNode = ({
+  mode,
+  children,
+  style,
+  offsetTop,
+  ...restProps
+}: ShowNodeProps & EditNodeProps) => {
+  if (mode === 'edit') {
+    return <EditNode {...restProps}>{children}</EditNode>;
+  }
+
+  return (
+    <ShowNode style={style} offsetTop={offsetTop} position={restProps.position}>
+      {children}
+    </ShowNode>
+  );
+};
 
 const TypographyCard = (props: TypographyCardProps) => {
   const {
@@ -13,6 +32,8 @@ const TypographyCard = (props: TypographyCardProps) => {
     onChangeActive,
     enableRulerGuide,
     enableAutoAlign,
+    style,
+    className,
   } = props;
   const { size, nodes } = template;
   console.log('TypographyCard-->', toJS(props), {
@@ -36,8 +57,13 @@ const TypographyCard = (props: TypographyCardProps) => {
       className={classNames('typography-card-container', {
         isEditing: mode === 'edit',
         isNotEditing: mode !== 'edit',
+        [className!]: !!className,
       })}
-      style={{ width: `${size?.width}mm`, height: `${size?.height}mm` }}
+      style={{
+        ...style,
+        width: `${size?.width}mm`,
+        height: `${size?.height}mm`,
+      }}
     >
       {nodes.map((node) => (
         <TemplateNode

@@ -1,5 +1,5 @@
 import interact from 'interactjs';
-import React, { CSSProperties, useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import './index.less';
 import { TNode, TPosition } from './type';
 
@@ -27,7 +27,7 @@ interface InteractNodeOptions {
   ratio?: number | 'preserve'; // 缩放时是否固定宽高的比例
 }
 
-interface InteractNodeProps {
+export interface EditNodeProps {
   children: React.ReactNode;
   position: TPosition;
   onChange?: (value: TPosition) => void;
@@ -38,13 +38,7 @@ interface InteractNodeProps {
   openAutoAlignment?: boolean; // 拖动元素时是否自动吸附
 }
 
-interface NormalNodeProps {
-  mode?: 'display' | 'edit'; // 默认 display
-  style?: CSSProperties;
-  offsetTop: number;
-}
-
-const InteractNode = (props: InteractNodeProps) => {
+const EditNode = (props: EditNodeProps) => {
   const {
     children,
     position,
@@ -220,46 +214,4 @@ const InteractNode = (props: InteractNodeProps) => {
   );
 };
 
-const NormalNode = ({
-  style,
-  offsetTop,
-  position,
-  children,
-}: NormalNodeProps & InteractNodeProps) => (
-  <div
-    style={{
-      display: 'flex',
-      transform: `translate(${position.left}px,${position.top - offsetTop}px)`,
-      alignItems: 'center',
-      wordBreak: 'break-all',
-      ...position,
-      ...(style || {}),
-    }}
-  >
-    {children}
-  </div>
-);
-
-const TemplateNode = ({
-  mode,
-  children,
-  style,
-  offsetTop,
-  ...restProps
-}: NormalNodeProps & InteractNodeProps) => {
-  if (mode === 'edit') {
-    return <InteractNode {...restProps}>{children}</InteractNode>;
-  }
-
-  return (
-    <NormalNode
-      style={style}
-      offsetTop={offsetTop}
-      position={restProps.position}
-    >
-      {children}
-    </NormalNode>
-  );
-};
-
-export default TemplateNode;
+export default EditNode;

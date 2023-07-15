@@ -1,9 +1,7 @@
-// import { toJS } from 'mobx';
 import { Observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 import ClientPrintContext from 'react-client-print/context';
 import TypographyCard from '../TypographyCard';
-import './index.less';
 
 const PrintPreview = () => {
   const { store } = useContext(ClientPrintContext);
@@ -11,9 +9,10 @@ const PrintPreview = () => {
   return (
     <Observer>
       {() => (
-        <div className="print-preview">
+        <div className="print-preview-container">
           {!!store.selectedTemplate && (
             <TypographyCard
+              style={{ margin: '0 auto' }}
               mode={store.mode}
               template={
                 store.mode === 'display'

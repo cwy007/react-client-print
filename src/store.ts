@@ -15,9 +15,6 @@ class PrintStore {
   /** 当前选中模板 */
   selectedTemplate?: TTemplate;
 
-  /** 默认模板名称 */
-  // defaultTemplateName?: string;
-
   /** 业务数据 */
   dataSource: Record<string, any>[] = [];
 
@@ -85,6 +82,27 @@ class PrintStore {
       },
     });
   }
+
+  /** 添加节点 */
+  addNode() {}
+
+  /** 移除节点 */
+  removeNode() {}
+
+  /** 添加模板 */
+  createTemplate() {}
+
+  /** 删除模板 */
+  deleteTemplate() {}
+
+  /** 保存模板 */
+  saveTemplate() {}
+
+  /** 切换模板 */
+  switchTemplate() {}
+
+  /** 触发打印 */
+  print() {}
 }
 
 export default PrintStore;

@@ -82,13 +82,13 @@ const ReactClientPrint: FC<ReactClientPrintProps> = ({
       <div className="react-client-print-container">
         {/* <Print templates={showTemplate ? printTemplates : []} /> */}
 
-        <div className="print-preview-container">
-          <PrintPreview />
-        </div>
+        <PrintPreview />
+        {/* <div className="print-preview-container">
+        </div> */}
 
-        <div className="print-setting-container">
-          <PrintSetting />
-        </div>
+        {/* <div className="print-setting-container">
+        </div> */}
+        <PrintSetting />
       </div>
     </ClientPrintContext.Provider>
   );

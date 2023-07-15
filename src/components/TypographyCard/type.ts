@@ -43,4 +43,6 @@ export interface TypographyCardProps {
   onChangeActive?: (node: TNode) => void;
   enableRulerGuide?: boolean;
   enableAutoAlign?: boolean;
+  style?: CSSProperties;
+  className?: string;
 }

@@ -1,9 +1,8 @@
 import React from 'react';
 
 const PrintSetting = () => {
-  console.log('baz-->');
-
-  return <div className="print-preview">PrintSetting</div>;
+  return <div className="print-setting-container">PrintSetting</div>;
+  // return <div className="print-setting">PrintSetting</div>;
 };
 
 export default PrintSetting;
