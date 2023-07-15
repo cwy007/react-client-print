@@ -1,4 +1,4 @@
-import { runInAction, toJS } from 'mobx';
+import { toJS } from 'mobx';
 import React, { useEffect, useMemo, type FC } from 'react';
 import PrintPreview from 'react-client-print/components/PrintPreview';
 import PrintSetting from 'react-client-print/components/PrintSetting';
@@ -9,7 +9,7 @@ import './index.less';
 export interface ReactClientPrintProps {
   dataSource?: any[];
   templates?: any[];
-  defaultTemplateName?: number | string;
+  defaultTemplateName?: string;
   defaultFields: {
     name: string;
     fields: string[];
@@ -35,35 +35,28 @@ const ReactClientPrint: FC<ReactClientPrintProps> = ({
   console.log('defaultFields', toJS(defaultFields));
   console.log('fetchCustomFieldsSvc', toJS(fetchCustomFieldsSvc));
 
-  const store = useMemo(
-    () =>
-      new PrintStore({
-        foo: 'foo',
-      }),
-    [],
-  );
+  const store = useMemo(() => new PrintStore(), []);
 
   useEffect(() => {
     if (store) {
-      runInAction(() => {
-        Object.assign(store, {
-          dataSource,
-          templates,
-          defaultTemplateName,
-          defaultFields,
-          fetchCustomFieldsSvc,
-        });
+      store.update({
+        dataSource,
+        templates,
+        defaultTemplateName,
+        defaultFields,
       });
     }
-  }, [
-    dataSource,
-    templates,
-    defaultTemplateName,
-    defaultFields,
-    fetchCustomFieldsSvc,
-  ]);
+  }, [store, dataSource, templates, defaultTemplateName, defaultFields]);
 
-  const printContext = useMemo(
+  useEffect(() => {
+    if (typeof fetchCustomFieldsSvc === 'function') {
+      fetchCustomFieldsSvc().then((customFields) => {
+        store.update({ customFields });
+      });
+    }
+  }, [fetchCustomFieldsSvc, store]);
+
+  const clientPrintContext = useMemo(
     () => ({
       store,
     }),
@@ -71,7 +64,7 @@ const ReactClientPrint: FC<ReactClientPrintProps> = ({
   );
 
   return (
-    <ClientPrintContext.Provider value={printContext}>
+    <ClientPrintContext.Provider value={clientPrintContext}>
       <div className="react-client-print-container">
         {/* <Print templates={showTemplate ? printTemplates : []} /> */}
 

@@ -60,8 +60,16 @@ const TagEditor = () => {
           dataSource={store.dataSource}
           defaultFields={[
             {
-              name: '商品',
+              name: '商品信息',
               fields: ['名称', '单价', '生成日期'],
+            },
+            {
+              name: '订单信息',
+              fields: ['订单名称', '客户名称', '下单日期'],
+            },
+            {
+              name: '其他信息',
+              fields: ['打印日期', '二维码', '条形码'],
             },
           ]}
           fetchCustomFieldsSvc={async () => {
