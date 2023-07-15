@@ -1,16 +1,19 @@
 import { flatten } from 'lodash';
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, toJS } from 'mobx';
 import { TNode, TTemplate } from './components/TypographyCard/type';
 
 class PrintStore {
   /** 模式 */
-  mode: 'display' | 'edit' = 'edit';
+  mode: 'display' | 'edit' = 'display';
 
   /** 打印份数 */
-  numberOfCopies: number = 1;
+  numberOfCopies: number | null = 1;
 
   /** 打印模板 */
   templates: TTemplate[] = [];
+
+  /** 编辑中的临时模板 */
+  edtingTemplate?: TTemplate;
 
   /** 当前选中模板 */
   selectedTemplate?: TTemplate;
@@ -99,7 +102,15 @@ class PrintStore {
   saveTemplate() {}
 
   /** 切换模板 */
-  switchTemplate() {}
+  switchTemplate(templateName: string) {
+    const selectedTemplate = this.templates.find(
+      (v) => v.name === templateName,
+    );
+    this.update({
+      selectedTemplate,
+      edtingTemplate: toJS(selectedTemplate),
+    });
+  }
 
   /** 触发打印 */
   print() {}

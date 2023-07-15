@@ -1,8 +1,17 @@
-import React from 'react';
+import { observer } from 'mobx-react-lite';
+import React, { useContext } from 'react';
+import ClientPrintContext from 'react-client-print/context';
+import PrintSettingEdit from './Edit';
+import PrintSettingShow from './Show';
 
 const PrintSetting = () => {
-  return <div className="print-setting-container">PrintSetting</div>;
-  // return <div className="print-setting">PrintSetting</div>;
+  const { store } = useContext(ClientPrintContext);
+
+  return (
+    <div className="print-setting-container">
+      {store.mode === 'edit' ? <PrintSettingEdit /> : <PrintSettingShow />}
+    </div>
+  );
 };
 
-export default PrintSetting;
+export default observer(PrintSetting);
