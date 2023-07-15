@@ -44,10 +44,10 @@
       "type": "value",
       "placeholder": "{商品生成日期}",
       "top": 10,
-      "left": 320,
+      "left": 240,
       "fontSize": 14,
       "height": 32,
-      "width": 49
+      "width": 112
     },
     {
       "id": 1598863745684,
