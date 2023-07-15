@@ -21,14 +21,25 @@ features:
 
 ### 📦 安装依赖
 
-```jsx | pure
-// 我不会被渲染为 React 组件
+```bash | pure
+yarn add react-client-print
+
+or
+
+npm install react-client-print
+
 ```
 
 ### 🔨 快速开始
 
 ```jsx | pure
-// 我不会被渲染为 React 组件
+import { ReactClientPrint } from 'react-client-print';
+
+<ReactClientPrint
+  templates={templates}
+  defaultTemplateName={defaultTemplateName}
+  dataSource={dataSource}
+/>;
 ```
 
 ## 问题反馈
