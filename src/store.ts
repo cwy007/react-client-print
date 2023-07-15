@@ -4,7 +4,7 @@ import { TNode, TTemplate } from './components/TypographyCard/type';
 
 class PrintStore {
   /** 模式 */
-  mode: 'display' | 'edit' = 'display';
+  mode: 'display' | 'edit' = 'edit';
 
   /** 打印份数 */
   numberOfCopies: number | null = 1;

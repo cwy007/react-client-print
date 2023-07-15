@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { autorun, toJS } from 'mobx';
 import React, { useEffect, useMemo, type FC } from 'react';
 import PrintPreview from 'react-client-print/components/PrintPreview';
@@ -79,15 +80,15 @@ const ReactClientPrint: FC<ReactClientPrintProps> = ({
 
   return (
     <ClientPrintContext.Provider value={clientPrintContext}>
-      <div className="react-client-print-container">
+      <div
+        className={classNames('react-client-print-container', {
+          isEditing: store.mode === 'edit',
+        })}
+      >
         {/* <Print templates={showTemplate ? printTemplates : []} /> */}
 
         <PrintPreview />
-        {/* <div className="print-preview-container">
-        </div> */}
 
-        {/* <div className="print-setting-container">
-        </div> */}
         <PrintSetting />
       </div>
     </ClientPrintContext.Provider>
