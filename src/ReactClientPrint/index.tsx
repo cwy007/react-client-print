@@ -30,12 +30,6 @@ const ReactClientPrint: FC<ReactClientPrintProps> = ({
   defaultFields,
   fetchCustomFieldsSvc,
 }) => {
-  // console.log('dataSource', toJS(dataSource));
-  // console.log('templates', toJS(templates));
-  // console.log('defaultTemplateName', toJS(defaultTemplateName));
-  // console.log('defaultFields', toJS(defaultFields));
-  // console.log('fetchCustomFieldsSvc', toJS(fetchCustomFieldsSvc));
-
   const store = useMemo(() => new PrintStore(), []);
 
   autorun(() => {

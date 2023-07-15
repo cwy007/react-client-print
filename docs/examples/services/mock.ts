@@ -41,7 +41,7 @@ export const mockGetPrintDataResp = mockjs.mock({
         商品单价: '@natural(1, 10)',
         商品生成日期: '@datetime("yyyy-MM-dd HH:mm:ss")',
         订单名称: '@word(6)',
-        客订单户名称: '@word(4)',
+        客户订单名称: '@word(4)',
         订单下单日期: '@datetime("yyyy-MM-dd HH:mm:ss")',
         打印日期: '@datetime("yyyy-MM-dd")',
       },
