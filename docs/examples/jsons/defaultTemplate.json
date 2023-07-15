@@ -1,0 +1,121 @@
+{
+  "qrCodeValue": "{二维码}",
+  "value": {
+    "size": {
+      "type": "fixed",
+      "width": 100,
+      "height": 100
+    },
+    "qrCode": {
+      "top": 50,
+      "left": 10,
+      "width": 90,
+      "height": 90
+    },
+    "nodes": [
+      {
+        "id": 1598863711736,
+        "type": "value",
+        "text": "{生产单号}",
+        "top": 50,
+        "left": 120,
+        "fontSize": 14,
+        "height": 32,
+        "width": 112,
+        "style": {
+          "fontWeight": "bold"
+        }
+      },
+      {
+        "id": 1598863712603,
+        "type": "value",
+        "text": "{生产总数}",
+        "top": 150,
+        "left": 10,
+        "fontSize": 14,
+        "height": 32,
+        "width": 112
+      },
+      {
+        "id": 1598863713497,
+        "type": "value",
+        "text": "{返工}",
+        "top": 10,
+        "left": 320,
+        "fontSize": 14,
+        "height": 32,
+        "width": 49
+      },
+      {
+        "id": 1598863745684,
+        "type": "value",
+        "text": "{产品名称}",
+        "top": 10,
+        "left": 10,
+        "fontSize": 14,
+        "height": 32,
+        "width": 112,
+        "style": {
+          "fontWeight": "bold"
+        }
+      },
+      {
+        "id": 1598863750028,
+        "type": "value",
+        "text": "{打印日期}",
+        "top": 10,
+        "left": 120,
+        "fontSize": 14,
+        "height": 32,
+        "width": 112,
+        "style": {
+          "fontWeight": "bold"
+        }
+      },
+      {
+        "id": 1598863759434,
+        "type": "value",
+        "text": "{批量计划生产数}",
+        "top": 90,
+        "left": 120,
+        "fontSize": 14,
+        "height": 32,
+        "width": 112
+      },
+      {
+        "id": 1598863764848,
+        "type": "value",
+        "text": "{工序}",
+        "top": 250,
+        "left": 10,
+        "fontSize": 14,
+        "height": 126,
+        "width": 357
+      },
+      {
+        "id": 1598863777294,
+        "type": "value",
+        "text": "{订单行备注}",
+        "top": 130,
+        "left": 120,
+        "fontSize": 14,
+        "height": 32,
+        "width": 112
+      },
+      {
+        "id": 1598863804148,
+        "type": "label",
+        "text": "自定义",
+        "top": 50,
+        "left": 240,
+        "fontSize": 14,
+        "height": 32,
+        "width": 112,
+        "style": {
+          "justifyContent": "flex-end",
+          "textDecoration": "underline"
+        }
+      }
+    ]
+  }
+}

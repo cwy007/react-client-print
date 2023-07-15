@@ -6,7 +6,9 @@ import PrintStore from 'react-client-print/store';
 import './index.less';
 
 export interface ReactClientPrintProps {
-  title: string;
+  dataSource?: any[];
+  templates?: any[];
+  defaultTemplate?: number | string;
 }
 
 const ReactClientPrint: FC<ReactClientPrintProps> = () => {
