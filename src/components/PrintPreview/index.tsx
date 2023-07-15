@@ -7,7 +7,6 @@ import './index.less';
 
 const PrintPreview = () => {
   const { store } = useContext(ClientPrintContext);
-  // console.log('PrintPreview-->', toJS(store));
 
   return (
     <Observer>

@@ -1,7 +1,7 @@
 ---
 hero:
   title: 客户端打印组件
-  description: react + mobx + less + antd
+  description: react + mobx + antd + less
   actions:
     - text: 快速上手
       link: /demo/react-client-print
@@ -44,4 +44,4 @@ import { ReactClientPrint } from 'react-client-print';
 
 ## 问题反馈
 
-请访问 [Github](https://github.com/cwy007/react-component-print/issues)
+请访问 [Github](https://github.com/cwy007/react-client-print/issues)
