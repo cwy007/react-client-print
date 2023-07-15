@@ -3,6 +3,7 @@ import { Observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 import ClientPrintContext from 'react-client-print/context';
 import TypographyCard from '../TypographyCard';
+import './index.less';
 
 const PrintPreview = () => {
   const { store } = useContext(ClientPrintContext);
