@@ -3,6 +3,7 @@ import { Spin } from 'antd';
 import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
 import { ReactClientPrint } from 'react-client-print';
+import './react-client-print.less';
 import {
   getCustomFieldsSvc,
   getPrintDataSvc,
@@ -61,11 +62,11 @@ const TagEditor = () => {
           defaultFields={[
             {
               name: '商品信息',
-              fields: ['名称', '单价', '生成日期'],
+              fields: ['商品名称', '商品单价', '商品生成日期'],
             },
             {
               name: '订单信息',
-              fields: ['订单名称', '客户名称', '下单日期'],
+              fields: ['订单名称', '客订单户名称', '订单下单日期'],
             },
             {
               name: '其他信息',

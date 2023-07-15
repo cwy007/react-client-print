@@ -17,7 +17,7 @@ const PrintPreview = () => {
               mode={store.mode}
               template={
                 store.mode === 'display'
-                  ? store.replacedTemplate
+                  ? store.replacedTemplate!
                   : store.selectedTemplate
               }
               activeNode={store.activeNode}

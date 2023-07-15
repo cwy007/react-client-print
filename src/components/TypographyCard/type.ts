@@ -37,7 +37,7 @@ export interface TTemplate {
 
 export interface TypographyCardProps {
   mode?: 'display' | 'edit';
-  template?: TTemplate;
+  template: TTemplate;
   onChange?: (template: TTemplate) => void;
   activeNode?: TNode; // TODO
   onChangeActive?: (node: TNode) => void;
