@@ -1,25 +1,33 @@
 import { Button, Popconfirm, Space, Tooltip } from 'antd';
+import { autorun, toJS } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 import ClientPrintContext from 'react-client-print/context';
 
 const Fields = () => {
   const { store } = useContext(ClientPrintContext);
-  // const [form] = Form.useForm();
+
+  autorun(() => {
+    console.log('store-->', store.deleteFieldBtnDisabled, toJS(store));
+  });
 
   return (
     <div>
       <Space size={16}>
-        <Button type="dashed">添加字段</Button>
+        <Button
+          type="dashed"
+          onClick={() => {
+            store.addNode('todo', 'label');
+          }}
+        >
+          添加字段
+        </Button>
 
         {store.deleteFieldBtnDisabled ? (
           <Tooltip placement="top" title="请先在打印页面中选中要删除的字段">
             <Button type="dashed" className="disabled-btn">
               删除字段
             </Button>
-            {/* <div className={classNames(styles.formBtn, styles.disableBtn)}>
-              删除字段
-            </div> */}
           </Tooltip>
         ) : (
           <Popconfirm
@@ -27,11 +35,11 @@ const Fields = () => {
             okText="是"
             cancelText="否"
             // onConfirm={handleRemoveFields}
+            onConfirm={() =>
+              store.removeNode(store.activeNode!.placeholder, true)
+            }
           >
-            {/* <div className={styles.formBtn}>删除字段</div> */}
-            <Button type="dashed" className="disabled-btn">
-              删除字段
-            </Button>
+            <Button type="dashed">删除字段</Button>
           </Popconfirm>
         )}
       </Space>

@@ -1,5 +1,5 @@
 import { flatten } from 'lodash';
-import { makeAutoObservable, toJS } from 'mobx';
+import { makeAutoObservable, observable, toJS } from 'mobx';
 import { TNode, TTemplate } from './components/TypographyCard/type';
 import { ReactClientPrintProps } from './ReactClientPrint';
 
@@ -85,7 +85,7 @@ class PrintStore {
   }
 
   get deleteFieldBtnDisabled() {
-    return (
+    return !(
       this.activeNode?.type === 'label' || this.activeNode?.type === 'value'
     );
   }
@@ -137,7 +137,7 @@ class PrintStore {
         placeholder,
       } as TNode);
     } else {
-      this.addNodeToEditingTemplate({
+      const newNode = observable({
         id: Date.now(),
         type,
         placeholder,
@@ -148,7 +148,8 @@ class PrintStore {
         style: {
           fontSize: 14,
         },
-      } as TNode);
+      });
+      this.addNodeToEditingTemplate(newNode as TNode);
     }
   }
 
