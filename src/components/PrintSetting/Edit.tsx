@@ -1,15 +1,17 @@
-import { Button, Popconfirm, Select, Space } from 'antd';
+import { Button, Collapse, Popconfirm, Select, Space } from 'antd';
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 import ClientPrintContext from 'react-client-print/context';
-import AddTemplateModal from './AddTemplateModal';
 import { TTemplate } from '../TypographyCard/type';
+import AddTemplateModal from './AddTemplateModal';
+import './index.less';
+import PaperSize from './PaperSize';
 
 const Option = Select.Option;
+const Panel = Collapse.Panel;
 
 const PrintSettingEdit = () => {
   const { store } = useContext(ClientPrintContext);
-  console.log('store-->', store);
 
   return (
     <div className="print-setting-edit">
@@ -36,7 +38,7 @@ const PrintSettingEdit = () => {
         <Popconfirm
           placement="topLeft"
           title="确定删除当前模板吗？"
-          onConfirm={store.deleteTemplate} // TODO
+          onConfirm={store.deleteTemplate}
           okText="确定"
           cancelText="取消"
         >
@@ -44,6 +46,17 @@ const PrintSettingEdit = () => {
         </Popconfirm>
       </Space>
 
+      <Collapse defaultActiveKey={['pageSize', 'style', 'fields']}>
+        <Panel header="打印及纸张设置" key="pageSize">
+          <PaperSize />
+        </Panel>
+        <Panel header="样式" key="style">
+          bar
+        </Panel>
+        <Panel header="字段" key="fields">
+          baz
+        </Panel>
+      </Collapse>
 
       <Space className="fixed-footer">
         <Button

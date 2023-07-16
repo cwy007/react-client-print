@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import EditNode, { EditNodeProps } from './Edit';
 import ShowNode, { ShowNodeProps } from './Show';
@@ -35,6 +36,7 @@ const TypographyCard = (props: TypographyCardProps) => {
     className,
   } = props;
   const { size = {} as TTemplate['size'], nodes = [] } = template || {};
+  console.log('size-->78', size);
   // console.log('TypographyCard-->', toJS(props), {
   //   template,
   //   onChange,
@@ -89,4 +91,4 @@ const TypographyCard = (props: TypographyCardProps) => {
   );
 };
 
-export default TypographyCard;
+export default observer(TypographyCard);

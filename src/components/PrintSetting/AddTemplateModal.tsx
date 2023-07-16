@@ -30,6 +30,7 @@ const AddTemplateModal = () => {
     >
       <Form form={form}>
         <FormItem
+          colon={false}
           label="模板名称"
           name="name"
           rules={[
