@@ -1,9 +1,8 @@
 import classNames from 'classnames';
-import { toJS } from 'mobx';
 import React from 'react';
 import EditNode, { EditNodeProps } from './Edit';
 import ShowNode, { ShowNodeProps } from './Show';
-import { TypographyCardProps } from './type';
+import { TTemplate, TypographyCardProps } from './type';
 
 const TemplateNode = ({
   mode,
@@ -30,20 +29,20 @@ const TypographyCard = (props: TypographyCardProps) => {
     onChange,
     activeNode,
     onChangeActive,
-    enableRulerGuide,
+    // enableRulerGuide,
     enableAutoAlign,
     style,
     className,
   } = props;
-  const { size, nodes } = template;
-  console.log('TypographyCard-->', toJS(props), {
-    template,
-    onChange,
-    activeNode,
-    onChangeActive,
-    enableRulerGuide,
-    enableAutoAlign,
-  });
+  const { size = {} as TTemplate['size'], nodes = [] } = template || {};
+  // console.log('TypographyCard-->', toJS(props), {
+  //   template,
+  //   onChange,
+  //   activeNode,
+  //   onChangeActive,
+  //   enableRulerGuide,
+  //   enableAutoAlign,
+  // });
 
   let offsetTop = 0;
   const updateOffsetTop = (v: number) => {

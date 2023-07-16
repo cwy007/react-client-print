@@ -1,6 +1,7 @@
 import { flatten } from 'lodash';
 import { makeAutoObservable, toJS } from 'mobx';
 import { TNode, TTemplate } from './components/TypographyCard/type';
+import { ReactClientPrintProps } from './ReactClientPrint';
 
 class PrintStore {
   /** 模式 */
@@ -35,6 +36,12 @@ class PrintStore {
 
   /** 自动对齐 */
   enableAutoAlign: boolean = true;
+
+  /** 新增模板弹窗 */
+  addTemplateModalVisible: boolean = false;
+
+  /** 新建/编辑/删除模板 */
+  onChange?: ReactClientPrintProps['onChange'];
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
@@ -92,14 +99,44 @@ class PrintStore {
   /** 移除节点 */
   removeNode() {}
 
-  /** 添加模板 */
-  createTemplate() {}
+  /** 新增模板 */
+  createTemplate(payload: { name: string }) {
+    // const newTemplate = { ...defaultTemplate, ...payload } as TTemplate;
+    // this.update({ templates: [...this.templates, newTemplate] });
+    console.log('createTemplate--->', this.onChange);
+    if (this.onChange) {
+      this.onChange({
+        template: payload,
+        operationType: 'create',
+      });
+    }
+  }
 
   /** 删除模板 */
-  deleteTemplate() {}
+  async deleteTemplate() {
+    if (this.onChange) {
+      await this.onChange({
+        template: this.selectedTemplate!,
+        operationType: 'delete',
+      });
+      if (this.edtingTemplate?.name === this.selectedTemplate?.name) {
+        this.update({
+          edtingTemplate: undefined,
+          selectedTemplate: undefined,
+        });
+      }
+    }
+  }
 
   /** 保存模板 */
-  saveTemplate() {}
+  updateTemplate() {
+    if (this.onChange) {
+      this.onChange({
+        template: this.edtingTemplate!,
+        operationType: 'update',
+      });
+    }
+  }
 
   /** 切换模板 */
   switchTemplate(templateName: string) {

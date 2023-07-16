@@ -1,15 +1,18 @@
 import { useRequest } from 'ahooks';
-import { Spin } from 'antd';
+import { message, Spin } from 'antd';
 import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
 import { ReactClientPrint } from 'react-client-print';
+import useLocalObservable from './hooks/useLocalObservable';
 import './react-client-print.less';
 import {
+  createTemplateSvc,
+  deleteTemplateSvc,
   getCustomFieldsSvc,
   getPrintDataSvc,
   getTemplatesSvc,
+  updateTemplateSvc,
 } from './services';
-import useLocalObservable from './utils/useLocalObservable';
 
 const TagEditor = () => {
   const { store, updateStore } = useLocalObservable(() => ({
@@ -47,9 +50,13 @@ const TagEditor = () => {
     },
   );
 
-  useEffect(() => {
+  const refresh = () => {
     getTemplatesReq();
     getPrintDataReq();
+  };
+
+  useEffect(() => {
+    refresh();
   }, []);
 
   return (
@@ -76,9 +83,40 @@ const TagEditor = () => {
           fetchCustomFieldsSvc={async () => {
             const resp = await getCustomFieldsSvc();
             if (resp.code === 200) {
-              return resp.data?.list;
+              return resp.data?.list || [];
             }
             return [];
+          }}
+          onChange={async ({ template, operationType }) => {
+            console.log('template-->', template);
+            console.log('operationType-->', operationType);
+
+            if (operationType === 'create') {
+              const resp = await createTemplateSvc(template);
+              if (resp.code === 200) {
+                message.success('新建模板成功');
+              }
+            }
+
+            if (operationType === 'update') {
+              const resp = await updateTemplateSvc(template);
+              if (resp.code === 200) {
+                message.success('修改模板成功');
+              }
+            }
+
+            if (operationType === 'delete') {
+              const resp = await deleteTemplateSvc(template);
+              if (resp.code === 200) {
+                message.success('删除模板成功');
+              }
+            }
+
+            // setTimeout(() => {
+            //   // window.location.reload();
+            //   refresh();
+            // }, 1000)
+            refresh();
           }}
         />
       </div>

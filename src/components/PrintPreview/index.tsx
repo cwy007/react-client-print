@@ -1,4 +1,4 @@
-import { Observer } from 'mobx-react-lite';
+import { Observer, observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 import ClientPrintContext from 'react-client-print/context';
 import TypographyCard from '../TypographyCard';
@@ -17,7 +17,7 @@ const PrintPreview = () => {
               template={
                 store.mode === 'display'
                   ? store.replacedTemplate!
-                  : store.selectedTemplate
+                  : store.edtingTemplate!
               }
               activeNode={store.activeNode}
               onChangeActive={(activeNode) => store.updateNode({ activeNode })}
@@ -31,4 +31,4 @@ const PrintPreview = () => {
   );
 };
 
-export default PrintPreview;
+export default observer(PrintPreview);
