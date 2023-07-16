@@ -3,7 +3,8 @@ import defaultTemplate from '../services/defaultTemplate.json';
 
 const CACHE_KEY = 'react-client-print';
 
-const getCacheValue = () => JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
+export const getCacheValue = () =>
+  JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
 
 export const getTemplates = () => {
   const result = getCacheValue();

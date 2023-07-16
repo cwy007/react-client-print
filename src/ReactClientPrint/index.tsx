@@ -82,7 +82,8 @@ const ReactClientPrint = ({
   }, []);
 
   useEffect(() => {
-    if (defaultTemplateName && !store.selectedTemplate) {
+    console.log('defaultTemplateName-->', defaultTemplateName);
+    if (defaultTemplateName !== store.selectedTemplate?.name) {
       const selectedTemplate = store.templates.find(
         (v) => v.name === defaultTemplateName,
       );

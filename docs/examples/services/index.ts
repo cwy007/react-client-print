@@ -3,6 +3,7 @@ import { TTemplate } from 'react-client-print/components/TypographyCard/type';
 import {
   createTemplates,
   deleteTemplate,
+  getCacheValue,
   getTemplates,
   updateTemplate,
 } from '../utils';
@@ -45,7 +46,7 @@ export const getTemplatesSvc = async (): Promise<getTemplatesResp> => {
     message: 'success',
     data: {
       list: templates,
-      defaultTemplateName: templates?.[0]?.name,
+      defaultTemplateName: getCacheValue()?.defaultTemplateName,
     },
   };
 };

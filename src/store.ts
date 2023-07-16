@@ -103,7 +103,6 @@ class PrintStore {
   createTemplate(payload: { name: string }) {
     // const newTemplate = { ...defaultTemplate, ...payload } as TTemplate;
     // this.update({ templates: [...this.templates, newTemplate] });
-    console.log('createTemplate--->', this.onChange);
     if (this.onChange) {
       this.onChange({
         template: payload,

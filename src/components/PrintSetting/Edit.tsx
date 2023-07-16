@@ -8,6 +8,7 @@ const Option = Select.Option;
 
 const PrintSettingEdit = () => {
   const { store } = useContext(ClientPrintContext);
+  console.log('store-->', store);
 
   return (
     <div className="print-setting-edit">
