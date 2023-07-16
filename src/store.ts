@@ -84,6 +84,12 @@ class PrintStore {
     );
   }
 
+  get deleteFieldBtnDisabled() {
+    return (
+      this.activeNode?.type === 'label' || this.activeNode?.type === 'value'
+    );
+  }
+
   /** 修改模板节点 */
   updateNode(payload: { activeNode: TNode }) {
     this.update({
@@ -100,11 +106,65 @@ class PrintStore {
     });
   }
 
+  addNodeToEditingTemplate(node: TNode) {
+    this.update({
+      edtingTemplate: {
+        ...this.edtingTemplate,
+        nodes: [...(this.edtingTemplate?.nodes || []), node],
+      } as TTemplate,
+    });
+  }
+
   /** 添加节点 */
-  addNode() {}
+  addNode(placeholder: string, type: TNode['type']) {
+    if (placeholder.includes('二维码')) {
+      this.addNodeToEditingTemplate({
+        type: 'qrcode',
+        placeholder,
+        top: 0,
+        left: 0,
+        width: 112,
+        height: 112,
+      } as TNode);
+    } else if (placeholder.indexOf('条形码')) {
+      this.addNodeToEditingTemplate({
+        top: 0,
+        left: 0,
+        width: 106,
+        height: 19,
+        // text: '{barcode}',
+        type: 'barcode',
+        placeholder,
+      } as TNode);
+    } else {
+      this.addNodeToEditingTemplate({
+        id: Date.now(),
+        type,
+        placeholder,
+        top: 0,
+        left: 0,
+        height: 32,
+        width: 112,
+        style: {
+          fontSize: 14,
+        },
+      } as TNode);
+    }
+  }
 
   /** 移除节点 */
-  removeNode() {}
+  removeNode(placeholder: string, isActive: boolean) {
+    this.update({
+      activeNode: isActive ? undefined : this.activeNode,
+      edtingTemplate: {
+        ...this.edtingTemplate,
+        nodes:
+          this.edtingTemplate?.nodes?.filter(
+            (n) => n.placeholder !== placeholder,
+          ) || [],
+      } as TTemplate,
+    });
+  }
 
   /** 新增模板 */
   createTemplate(payload: { name: string }) {

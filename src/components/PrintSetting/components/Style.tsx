@@ -11,7 +11,7 @@ import { compact } from 'lodash';
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 import ClientPrintContext from 'react-client-print/context';
-import { TNode } from '../TypographyCard/type';
+import { TNode } from '../../TypographyCard/type';
 
 const FormItem = Form.Item;
 const Option = Select.Option;

@@ -12,7 +12,7 @@ export interface TNode extends TPosition {
   id: string | number;
   placeholder: string;
   // fontSize: number;
-  type?: 'label' | 'value' | 'qrCode' | 'barcode'; // TODO
+  type?: 'label' | 'value' | 'qrcode' | 'barcode'; // TODO
   // formmat?: TBarcodeFormat; // TODO
 }
 

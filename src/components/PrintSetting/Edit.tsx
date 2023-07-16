@@ -3,10 +3,11 @@ import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 import ClientPrintContext from 'react-client-print/context';
 import { TTemplate } from '../TypographyCard/type';
-import AddTemplateModal from './AddTemplateModal';
+import AddTemplateModal from './components/AddTemplateModal';
+import Fields from './components/Fields';
+import PaperSize from './components/PaperSize';
+import Style from './components/Style';
 import './index.less';
-import PaperSize from './PaperSize';
-import Style from './Style';
 
 const Option = Select.Option;
 const Panel = Collapse.Panel;
@@ -55,7 +56,7 @@ const PrintSettingEdit = () => {
           <Style />
         </Panel>
         <Panel header="字段" key="fields">
-          baz
+          <Fields />
         </Panel>
       </Collapse>
 
