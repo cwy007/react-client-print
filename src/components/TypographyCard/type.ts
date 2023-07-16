@@ -11,7 +11,7 @@ export interface TPosition {
 export interface TNode extends TPosition {
   id: string | number;
   placeholder: string;
-  fontSize: number;
+  // fontSize: number;
   type?: 'label' | 'value' | 'qrCode' | 'barcode'; // TODO
   // formmat?: TBarcodeFormat; // TODO
 }

@@ -35,7 +35,7 @@ export interface EditNodeProps {
   isActive?: boolean;
   node?: TNode;
   onChangeActive?: (node: TNode) => void;
-  openAutoAlignment?: boolean; // 拖动元素时是否自动吸附
+  enableAutoAlign?: boolean; // 拖动元素时是否自动吸附
 }
 
 const EditNode = (props: EditNodeProps) => {
@@ -47,7 +47,7 @@ const EditNode = (props: EditNodeProps) => {
     options,
     isActive,
     onChangeActive,
-    openAutoAlignment,
+    enableAutoAlign,
   } = props;
   const ref = useRef<HTMLDivElement>(null);
 
@@ -74,7 +74,7 @@ const EditNode = (props: EditNodeProps) => {
           const { target } = e;
           const x = parseFloat(target.style.left);
           const y = parseFloat(target.style.top);
-          const { left, top } = openAutoAlignment
+          const { left, top } = enableAutoAlign
             ? adjustLabel(x, y)
             : { left: x, top: y };
           target.style.top = `${top}px`;

@@ -11,7 +11,7 @@ const PaperSize = () => {
   const { size } = store.edtingTemplate || {};
 
   return (
-    <FormItem label="尺寸" style={{ margin: 0, gap: 8 }} colon={false}>
+    <FormItem label="尺寸" colon={false}>
       <InputNumber
         size="small"
         min={1}
@@ -20,7 +20,6 @@ const PaperSize = () => {
         style={{ width: 100 }}
         value={size?.width}
         onChange={action((width: number | null) => {
-          // console.log('store.edtingTemplate!.size-->', store.edtingTemplate!.size)
           Object.assign(store.edtingTemplate!.size, { width });
         })}
       />

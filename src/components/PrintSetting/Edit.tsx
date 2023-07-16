@@ -6,6 +6,7 @@ import { TTemplate } from '../TypographyCard/type';
 import AddTemplateModal from './AddTemplateModal';
 import './index.less';
 import PaperSize from './PaperSize';
+import Style from './Style';
 
 const Option = Select.Option;
 const Panel = Collapse.Panel;
@@ -51,7 +52,7 @@ const PrintSettingEdit = () => {
           <PaperSize />
         </Panel>
         <Panel header="样式" key="style">
-          bar
+          <Style />
         </Panel>
         <Panel header="字段" key="fields">
           baz

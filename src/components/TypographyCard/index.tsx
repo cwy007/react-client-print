@@ -30,21 +30,12 @@ const TypographyCard = (props: TypographyCardProps) => {
     onChange,
     activeNode,
     onChangeActive,
-    // enableRulerGuide,
+    enableRulerGuide,
     enableAutoAlign,
     style,
     className,
   } = props;
   const { size = {} as TTemplate['size'], nodes = [] } = template || {};
-  console.log('size-->78', size);
-  // console.log('TypographyCard-->', toJS(props), {
-  //   template,
-  //   onChange,
-  //   activeNode,
-  //   onChangeActive,
-  //   enableRulerGuide,
-  //   enableAutoAlign,
-  // });
 
   let offsetTop = 0;
   const updateOffsetTop = (v: number) => {
@@ -56,7 +47,7 @@ const TypographyCard = (props: TypographyCardProps) => {
   return (
     <div
       className={classNames('typography-card-container', {
-        isEditing: mode === 'edit',
+        isEditing: mode === 'edit' && enableRulerGuide,
         isNotEditing: mode !== 'edit',
         [className!]: !!className,
       })}
@@ -81,7 +72,7 @@ const TypographyCard = (props: TypographyCardProps) => {
           }}
           onChangeActive={onChangeActive}
           style={node.style}
-          openAutoAlignment={enableAutoAlign}
+          enableAutoAlign={enableAutoAlign}
           offsetTop={updateOffsetTop(node.height || 0)}
         >
           {node.placeholder}

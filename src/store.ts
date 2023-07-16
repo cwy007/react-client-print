@@ -28,8 +28,8 @@ class PrintStore {
   /** 自定义字段 */
   customFields: { name: string; fields: string[] }[] = [];
 
-  /**  */
-  activeNode?: any;
+  /** 当前编辑的节点，用于高亮显示 */
+  activeNode?: TNode;
 
   /** 辅助线 */
   enableRulerGuide: boolean = true;
@@ -77,13 +77,20 @@ class PrintStore {
     return undefined;
   }
 
+  get fontStyleDisabled() {
+    return (
+      !this.activeNode ||
+      (this.activeNode?.type !== 'label' && this.activeNode?.type !== 'value')
+    );
+  }
+
   /** 修改模板节点 */
   updateNode(payload: { activeNode: TNode }) {
     this.update({
       activeNode: payload.activeNode,
-      selectedTemplate: {
-        ...this.selectedTemplate!,
-        nodes: (this.selectedTemplate?.nodes || []).map((n) => {
+      edtingTemplate: {
+        ...this.edtingTemplate!,
+        nodes: (this.edtingTemplate?.nodes || []).map((n) => {
           if (n.id === payload.activeNode?.id) {
             return payload.activeNode;
           }
@@ -101,8 +108,6 @@ class PrintStore {
 
   /** 新增模板 */
   createTemplate(payload: { name: string }) {
-    // const newTemplate = { ...defaultTemplate, ...payload } as TTemplate;
-    // this.update({ templates: [...this.templates, newTemplate] });
     if (this.onChange) {
       this.onChange({
         template: payload,
