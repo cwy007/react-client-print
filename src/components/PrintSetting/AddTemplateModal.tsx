@@ -13,6 +13,7 @@ const AddTemplateModal = () => {
     form.validateFields().then((values) => {
       store.createTemplate(values);
       store.update({ addTemplateModalVisible: false });
+      form.resetFields();
     });
   };
 

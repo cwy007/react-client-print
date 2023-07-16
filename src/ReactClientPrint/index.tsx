@@ -62,6 +62,7 @@ const ReactClientPrint = ({
   // });
 
   useEffect(() => {
+    console.log('JSON.stringify(templates)',  toJS(templates))
     store?.update({
       dataSource,
       templates,
@@ -81,18 +82,15 @@ const ReactClientPrint = ({
     }
   }, []);
 
+  const selectedTemplate = store.templates.find(v => v.name === defaultTemplateName);
   useEffect(() => {
-    console.log('defaultTemplateName-->', defaultTemplateName);
-    if (defaultTemplateName !== store.selectedTemplate?.name) {
-      const selectedTemplate = store.templates.find(
-        (v) => v.name === defaultTemplateName,
-      );
+    if (JSON.stringify(selectedTemplate) !== JSON.stringify(store.selectedTemplate)) {
       store.update({
         selectedTemplate,
         edtingTemplate: toJS(selectedTemplate),
       });
     }
-  }, [defaultTemplateName]);
+  }, [JSON.stringify(selectedTemplate), store]);
 
   useEffect(() => {
     if (!store.onChange) {

@@ -128,9 +128,9 @@ class PrintStore {
   }
 
   /** 保存模板 */
-  updateTemplate() {
+  async updateTemplate() {
     if (this.onChange) {
-      this.onChange({
+      await this.onChange({
         template: this.edtingTemplate!,
         operationType: 'update',
       });
