@@ -57,12 +57,8 @@ const ReactClientPrint = ({
     [store],
   );
 
-  // autorun(() => {
-  //   console.log('store-->6666', toJS(store));
-  // });
-
   useEffect(() => {
-    console.log('JSON.stringify(templates)',  toJS(templates))
+    console.log('JSON.stringify(templates)', toJS(templates));
     store?.update({
       dataSource,
       templates,
@@ -82,9 +78,14 @@ const ReactClientPrint = ({
     }
   }, []);
 
-  const selectedTemplate = store.templates.find(v => v.name === defaultTemplateName);
+  const selectedTemplate = store.templates.find(
+    (v) => v.name === defaultTemplateName,
+  );
   useEffect(() => {
-    if (JSON.stringify(selectedTemplate) !== JSON.stringify(store.selectedTemplate)) {
+    if (
+      JSON.stringify(selectedTemplate) !==
+      JSON.stringify(store.selectedTemplate)
+    ) {
       store.update({
         selectedTemplate,
         edtingTemplate: toJS(selectedTemplate),
