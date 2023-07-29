@@ -33,7 +33,7 @@ npm install react-client-print
 ### 🔨 快速开始
 
 ```jsx | pure
-import { ReactClientPrint } from 'react-client-print';
+import ReactClientPrint from 'react-client-print';
 
 <ReactClientPrint
   ref={storeRef}

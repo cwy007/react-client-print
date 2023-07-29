@@ -1,6 +1,6 @@
----
+<!-- ---
 toc: content
----
+--- -->
 
 # ReactClientPrint
 
@@ -10,13 +10,13 @@ toc: content
 
 ## API
 
-| 属性名              | 描述                     | 类型                                  | 默认值      |
-| ------------------- | ------------------------ | ------------------------------------- | ----------- |
-| templates           | 打印模板列表             | `TTemplate`                           | `[]`        |
-| defaultTemplateName | 默认模板名称             | `string`                              | `undefined` |
-| dataSource          | 打印的数据源             | `Record<string, string>[]`            | `[]`        |
-| defaultFields       | 模板字段                 | `{ name: string; fields: sring[] }[]` | `[]`        |
-| onChange            | 新建/编辑/删除模板的回调 | `ReactClientPrintProps['onChange']`   | undefined`  |
+| 属性名              | 描述                     | 类型                                | 默认值      |
+| ------------------- | ------------------------ | ----------------------------------- | ----------- |
+| templates           | 打印模板列表             | `TTemplate`                         | `[]`        |
+| defaultTemplateName | 默认模板名称             | `string`                            | `undefined` |
+| dataSource          | 打印的数据源             | `Record<string, string>[]`          | `[]`        |
+| defaultFields       | 模板字段                 | `{name: string; fields: sring[]}[]` | `[]`        |
+| onChange            | 新建/编辑/删除模板的回调 | `ReactClientPrintProps['onChange']` | `undefined` |
 
 ### 方法
 

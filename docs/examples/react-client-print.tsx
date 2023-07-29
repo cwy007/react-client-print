@@ -2,7 +2,7 @@ import { useRequest } from 'ahooks';
 import { message, Spin } from 'antd';
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useRef } from 'react';
-import { ReactClientPrint } from 'react-client-print';
+import ReactClientPrint from 'react-client-print';
 import PrintStore from 'react-client-print/store';
 import useLocalObservable from './hooks/useLocalObservable';
 import './react-client-print.less';
