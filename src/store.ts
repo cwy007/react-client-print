@@ -43,6 +43,9 @@ class PrintStore {
   /** 新建/编辑/删除模板 */
   onChange?: ReactClientPrintProps['onChange'];
 
+  /** 添加字段弹窗 */
+  addLabelModalVisible = false;
+
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
   }

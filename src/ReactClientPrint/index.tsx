@@ -26,12 +26,12 @@ export interface ReactClientPrintProps {
     name: string;
     fields: string[];
   }[];
-  fetchCustomFieldsSvc?: () => Promise<
-    {
-      name: string;
-      fields: string[];
-    }[]
-  >;
+  // fetchCustomFieldsSvc?: () => Promise<
+  //   {
+  //     name: string;
+  //     fields: string[];
+  //   }[]
+  // >;
   onChange: (payload: {
     template: Partial<TTemplate>;
     operationType: 'update' | 'create' | 'delete';
@@ -43,7 +43,7 @@ const ReactClientPrint = ({
   templates,
   defaultTemplateName,
   defaultFields,
-  fetchCustomFieldsSvc,
+  // fetchCustomFieldsSvc,
   onChange,
   ref,
 }: ReactClientPrintProps & { ref: any }) => {
@@ -70,13 +70,13 @@ const ReactClientPrint = ({
     JSON.stringify(defaultFields),
   ]);
 
-  useEffect(() => {
-    if (typeof fetchCustomFieldsSvc === 'function') {
-      fetchCustomFieldsSvc().then((customFields) => {
-        store.update({ customFields });
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof fetchCustomFieldsSvc === 'function') {
+  //     fetchCustomFieldsSvc().then((customFields) => {
+  //       store.update({ customFields });
+  //     });
+  //   }
+  // }, []);
 
   const selectedTemplate = store.templates.find(
     (v) => v.name === defaultTemplateName,
