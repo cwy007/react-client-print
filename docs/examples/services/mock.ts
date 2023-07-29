@@ -45,6 +45,8 @@ export const mockGetPrintDataResp = mockjs.mock({
         客户订单名称: '@word(4)',
         订单下单日期: '@datetime("yyyy-MM-dd HH:mm:ss")',
         打印日期: '@datetime("yyyy-MM-dd")',
+        条形码: 'https://www.npmjs.com/package/jsbarcode',
+        二维码: 'https://www.npmjs.com/package/qrcode',
       },
     ],
   },

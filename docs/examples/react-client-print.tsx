@@ -94,8 +94,6 @@ const TagEditor = () => {
           dataSource={store.dataSource}
           defaultFields={store.defaultFields}
           onChange={async ({ template, operationType }) => {
-            // console.log('template-->', template);
-            // console.log('operationType-->', operationType);
             if (operationType === 'create') {
               const resp = await createTemplateSvc(template);
               if (resp.code === 200) {

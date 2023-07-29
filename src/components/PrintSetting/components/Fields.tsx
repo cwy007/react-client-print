@@ -132,13 +132,11 @@ const Fields = () => {
               console.log('checkedValue', checkedValue);
               if (v.value.length === checkedValue.length) return;
               if (v.value.length > checkedValue.length) {
-                const fieldNames = difference(v.value, checkedValue);
-                fieldNames.forEach((fieldName) => {
-                  store.removeNode(
-                    `{${fieldName}}`,
-                    store.activeNode?.placeholder === fieldName,
-                  );
-                });
+                const fieldName = difference(v.value, checkedValue)[0];
+                store.removeNode(
+                  `{${fieldName}}`,
+                  store.activeNode?.placeholder === fieldName,
+                );
               } else {
                 const fieldName = difference(checkedValue, v.value)[0];
                 store.addNode(`{${fieldName}}`, 'value');

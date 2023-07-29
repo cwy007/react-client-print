@@ -5,10 +5,10 @@ import { ReactClientPrintProps } from './ReactClientPrint';
 
 class PrintStore {
   /** 模式 */
-  mode: 'display' | 'edit' = 'edit';
+  mode: 'display' | 'edit' = 'display';
 
   /** 打印份数 */
-  numberOfCopies: number | null = 1;
+  numberOfCopies = 1;
 
   /** 打印模板 */
   templates: TTemplate[] = [];
@@ -21,6 +21,9 @@ class PrintStore {
 
   /** 业务数据 */
   dataSource: Record<string, any>[] = [];
+
+  /** 打印数据 */
+  printDataSource: TTemplate[] = [];
 
   /** 默认字段 */
   defaultFields: { name: string; fields: string[] }[] = [];
@@ -63,18 +66,7 @@ class PrintStore {
   get replacedTemplate() {
     if (this.selectedTemplate) {
       const firstRecord = this.dataSource?.[0];
-      const nodes: TNode[] = [];
-      this.selectedTemplate?.nodes?.forEach((node) => {
-        nodes.push({
-          ...node,
-          placeholder:
-            firstRecord?.[node.placeholder?.slice(1, -1)]?.toString(),
-        });
-      });
-      return {
-        ...this.selectedTemplate,
-        nodes,
-      } as TTemplate;
+      return this.mergeTemplateWithData(this.selectedTemplate, firstRecord);
     }
 
     return undefined;
@@ -231,8 +223,32 @@ class PrintStore {
     });
   }
 
+  mergeTemplateWithData(template: TTemplate, data: Record<string, any>) {
+    const nodes: TNode[] = [];
+    template.nodes?.forEach((node) => {
+      nodes.push({
+        ...node,
+        placeholder: data?.[node.placeholder?.slice(1, -1)]?.toString(),
+      });
+    });
+    return {
+      ...template,
+      nodes,
+    } as TTemplate;
+  }
+
   /** 触发打印 */
-  print() {}
+  print() {
+    const printDataSource: TTemplate[] = [];
+    this.dataSource.forEach((data) => {
+      for (let i = 0; i < this.numberOfCopies; i += 1) {
+        printDataSource.push(
+          this.mergeTemplateWithData(this.selectedTemplate!, data),
+        );
+      }
+    });
+    this.update({ printDataSource });
+  }
 }
 
 export default PrintStore;

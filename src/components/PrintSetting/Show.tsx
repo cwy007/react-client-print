@@ -56,7 +56,7 @@ const PrintSettingShow = () => {
             min={1}
             max={100}
             value={store.numberOfCopies}
-            onChange={(numberOfCopies) => store.update({ numberOfCopies })}
+            onChange={(numberOfCopies: any) => store.update({ numberOfCopies })}
           />
         </Col>
       </Row>
@@ -65,7 +65,11 @@ const PrintSettingShow = () => {
 
       <Space size={16}>
         <Button onClick={() => history.back()}>取消</Button>
-        <Button type="primary" onClick={() => store.print()}>
+        <Button
+          type="primary"
+          onClick={() => store.print()}
+          disabled={!!store.selectedTemplate}
+        >
           打印
         </Button>
       </Space>
