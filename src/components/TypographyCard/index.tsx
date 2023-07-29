@@ -1,12 +1,12 @@
+import { message } from 'antd';
 import classNames from 'classnames';
+import JsBarcode from 'jsbarcode';
 import { observer } from 'mobx-react-lite';
+import QRCode from 'qrcode';
 import React, { useEffect, useMemo, useState } from 'react';
 import EditNode, { EditNodeProps } from './Edit';
 import ShowNode, { ShowNodeProps } from './Show';
 import { TBarcodeFormat, TTemplate, TypographyCardProps } from './type';
-import JsBarcode from 'jsbarcode';
-import QRCode from 'qrcode';
-import { message } from 'antd';
 
 function textToBase64Barcode(
   text: string,
@@ -40,7 +40,6 @@ function textToBase64Barcode(
   return canvas.toDataURL('image/png');
 }
 
-
 const TemplateNode = ({
   mode,
   children,
@@ -72,13 +71,18 @@ const TypographyCard = (props: TypographyCardProps) => {
     className,
   } = props;
   const { size = {} as TTemplate['size'], nodes = [] } = template || {};
-  const barcode = nodes.find(v => v.type === 'barcode');
-  const qrcode = nodes.find(v => v.type === 'qrcode');
+  const barcode = nodes.find((v) => v.type === 'barcode');
+  const qrcode = nodes.find((v) => v.type === 'qrcode');
 
-  const barcodeUrl = useMemo(
-    () => barcode?.placeholder && textToBase64Barcode(barcode?.placeholder, barcode?.formmat),
-    [barcode?.placeholder, barcode?.formmat],
-  );
+  const barcodeUrl = useMemo(() => {
+    if (mode === 'edit') {
+      return textToBase64Barcode('barcode'); // for preview
+    }
+    return (
+      barcode?.placeholder &&
+      textToBase64Barcode(barcode?.placeholder, barcode?.formmat)
+    );
+  }, [barcode?.placeholder, barcode?.formmat, mode]);
 
   const [qrCodeUrl, setQRCodeUrl] = useState('');
   useEffect(() => {
@@ -139,7 +143,7 @@ const TypographyCard = (props: TypographyCardProps) => {
             >
               {node.placeholder}
             </TemplateNode>
-          )
+          );
         }
 
         if (node.type === 'barcode') {
@@ -158,13 +162,10 @@ const TypographyCard = (props: TypographyCardProps) => {
               offsetTop={updateOffsetTop(node.height || 0)}
             >
               <div className="qrcode-wrapper">
-                <img
-                  src={barcodeUrl}
-                  alt={node.placeholder}
-                />
+                <img src={barcodeUrl} alt={node.placeholder} />
               </div>
             </TemplateNode>
-          )
+          );
         }
 
         if (node.type === 'qrcode') {
@@ -187,7 +188,7 @@ const TypographyCard = (props: TypographyCardProps) => {
                 <img src={qrCodeUrl} alt={node.placeholder} />
               </div>
             </TemplateNode>
-          )
+          );
         }
 
         return null;

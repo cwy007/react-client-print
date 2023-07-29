@@ -137,7 +137,7 @@ class PrintStore {
         id: 'qrcode',
         type: 'qrcode',
         placeholder,
-        top: 0,
+        top: 50,
         left: 0,
         width: 112,
         height: 112,

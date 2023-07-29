@@ -99,8 +99,8 @@ const Fields = () => {
         ) : (
           <Popconfirm
             title="你确定删除当前选中的字段吗？"
-            okText="是"
-            cancelText="否"
+            okText="确定"
+            cancelText="取消"
             onConfirm={() =>
               store.removeNode(store.activeNode!.placeholder, true)
             }
