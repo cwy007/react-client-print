@@ -224,6 +224,11 @@ class PrintStore {
   mergeTemplateWithData(template: TTemplate, data: Record<string, any>) {
     const nodes: TNode[] = [];
     template.nodes?.forEach((node) => {
+      if (node.type === 'label') {
+        nodes.push(node);
+        return;
+      }
+
       nodes.push({
         ...node,
         placeholder: data?.[node.placeholder?.slice(1, -1)]?.toString(),
