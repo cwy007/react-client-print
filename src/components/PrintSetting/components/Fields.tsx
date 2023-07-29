@@ -25,6 +25,7 @@ const AddLabelModal = ({ visible, onOk, onCancel }: AddLabelModalProps) => {
       open={visible}
       title="添加字段"
       closable
+      maskClosable
       onOk={handleOk}
       onCancel={onCancel}
       okText="确定"
@@ -38,9 +39,10 @@ const AddLabelModal = ({ visible, onOk, onCancel }: AddLabelModalProps) => {
           rules={[{ required: true, message: '不能为空' }]}
         >
           <Input
-            onPressEnter={handleOk}
+            autoFocus
             placeholder="请输入"
             style={{ width: '100%' }}
+            onPressEnter={handleOk}
           />
         </FormItem>
       </Form>

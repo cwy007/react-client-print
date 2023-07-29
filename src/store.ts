@@ -129,7 +129,7 @@ class PrintStore {
         width: 112,
         height: 112,
       } as TNode);
-    } else if (placeholder.indexOf('条形码')) {
+    } else if (placeholder.includes('条形码')) {
       this.addNodeToEditingTemplate({
         top: 0,
         left: 0,
