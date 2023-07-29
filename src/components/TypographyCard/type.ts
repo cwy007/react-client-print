@@ -11,9 +11,8 @@ export interface TPosition {
 export interface TNode extends TPosition {
   id: string | number;
   placeholder: string;
-  // fontSize: number;
   type?: 'label' | 'value' | 'qrcode' | 'barcode'; // TODO
-  // formmat?: TBarcodeFormat; // TODO
+  formmat?: TBarcodeFormat; // TODO
 }
 
 export type TBarcodeFormat = 'CODE39' | 'CODE128' | 'EAN8' | 'EAN13' | 'UPC';
@@ -29,8 +28,6 @@ export interface TTemplate {
     width: number;
     height: number;
   };
-  // qrCode?: TPosition;
-  // barcode?: TBarcodeNode;
   nodes: TNode[];
   name: string;
 }
