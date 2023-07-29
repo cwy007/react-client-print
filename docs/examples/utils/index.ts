@@ -23,7 +23,7 @@ export const createTemplates = (template: Partial<TTemplate>) => {
           ...template,
         },
       ],
-      defaultTemplateName: template.name,
+      defaultTemplateName: template?.name,
     }),
   );
 };
@@ -31,21 +31,21 @@ export const createTemplates = (template: Partial<TTemplate>) => {
 export const updateTemplate = (template: Partial<TTemplate>) => {
   let templates = getTemplates() as Partial<TTemplate>[];
   templates = templates.map((v) => {
-    if (v.name === template.name) {
+    if (v.name === template?.name) {
       return template;
     }
     return v;
   });
   const result = {
     templates,
-    defaultTemplateName: template.name,
+    defaultTemplateName: template?.name,
   };
   localStorage.setItem(CACHE_KEY, JSON.stringify(result));
 };
 
 export const deleteTemplate = (template: Partial<TTemplate>) => {
   let templates = getTemplates() as TTemplate[];
-  templates = templates.filter((v) => v.name !== template.name);
+  templates = templates.filter((v) => v.name !== template?.name);
   const result = {
     templates,
     defaultTemplateName: templates?.[0]?.name,

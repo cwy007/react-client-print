@@ -5,14 +5,6 @@ import mockjs from 'mockjs';
 export const mockTemplatesResp = mockjs.mock({
   code: 200,
   message: 'success',
-  // data: {
-  //   'list|1-10': [
-  //     defaultTemplate,
-  //   ],
-  //   defaultTemplateName: function () {
-  //     return (this as any)['list']?.[0]?.name;
-  //   },
-  // },
   data: {
     list: [],
     defaultTemplateName: function () {
@@ -27,23 +19,15 @@ export const mockGetPrintDataResp = mockjs.mock({
   message: 'success',
   data: {
     'list|1-10': [
-      // {
-      //   'id|+1': 1,
-      //   name: '@word(5)',
-      //   size: {
-      //     type: 'fixed',
-      //     width: 100,
-      //     height: 100,
-      //   },
-      // },
       {
         'id|+1': 1,
-        商品名称: '@word(3)',
-        商品单价: '@natural(1, 10)',
-        商品生成日期: '@datetime("yyyy-MM-dd HH:mm:ss")',
-        订单名称: '@word(6)',
-        客户订单名称: '@word(4)',
-        订单下单日期: '@datetime("yyyy-MM-dd HH:mm:ss")',
+        商品名称: '商品名称' + '@natural(10, 15)',
+        商品单价: '商品单价' + '@natural(5000, 15000)',
+        商品类别: '商品类别' + '@natural(5, 15)',
+        商品生成日期: '商品生成日期' + '@datetime("yyyy-MM-dd")',
+        订单名称: '订单名称' + '@word(6)',
+        客户地址: '客户地址' + '@word(4)',
+        订单下单日期: '订单下单日期' + '@datetime("yyyy-MM-dd HH:mm:ss")',
         打印日期: '@datetime("yyyy-MM-dd")',
         条形码: 'https://www.npmjs.com/package/jsbarcode',
         二维码: 'https://www.npmjs.com/package/qrcode',

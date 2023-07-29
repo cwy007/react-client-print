@@ -8,7 +8,7 @@ export const updatePaperSize = (template: TTemplate) => {
   const printCssText = `
     @media print {
       @page {
-        size: ${size.width}mm  ${size.height + 0.4}mm;
+        size: ${size.width}mm  ${size.height}mm;
       }
     }
     `;

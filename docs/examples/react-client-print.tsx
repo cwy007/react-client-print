@@ -1,8 +1,9 @@
 import { useRequest } from 'ahooks';
 import { message, Spin } from 'antd';
 import { observer } from 'mobx-react-lite';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ReactClientPrint } from 'react-client-print';
+import PrintStore from 'react-client-print/store';
 import useLocalObservable from './hooks/useLocalObservable';
 import './react-client-print.less';
 import {
@@ -13,6 +14,7 @@ import {
   getTemplatesSvc,
   updateTemplateSvc,
 } from './services';
+import defaultTemplate from './services/defaultTemplate.json';
 
 const defaultFields = [
   {
@@ -21,7 +23,7 @@ const defaultFields = [
   },
   {
     name: '订单信息',
-    fields: ['订单名称', '客户订单名称', '订单下单日期'],
+    fields: ['订单名称', '客户地址', '订单下单日期'],
   },
   {
     name: '其他信息',
@@ -30,6 +32,8 @@ const defaultFields = [
 ];
 
 const TagEditor = () => {
+  const storeRef = useRef<{ store: PrintStore }>(null);
+  const countRef = useRef(0);
   const { store, updateStore } = useLocalObservable(() => ({
     templates: [] as Record<string, any>[],
     defaultTemplateName: undefined as unknown as string,
@@ -71,6 +75,16 @@ const TagEditor = () => {
 
   useEffect(() => {
     refresh();
+
+    // init one default template for demo
+    setTimeout(() => {
+      if (!store.templates?.length && !countRef.current) {
+        storeRef.current?.store.createTemplate({
+          ...defaultTemplate,
+        });
+        countRef.current = 1;
+      }
+    }, 2000);
   }, []);
 
   useEffect(() => {
@@ -89,6 +103,7 @@ const TagEditor = () => {
     <Spin spinning={loadingTemplates || loadingPrintData}>
       <div className="tag-editor-container">
         <ReactClientPrint
+          ref={storeRef}
           templates={store.templates}
           defaultTemplateName={store.defaultTemplateName}
           dataSource={store.dataSource}

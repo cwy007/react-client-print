@@ -7,7 +7,16 @@
   },
   "nodes": [
     {
-      "id": 1598863711735,
+      "id": "barcode",
+      "type": "barcode",
+      "placeholder": "{条形码}",
+      "top": 290,
+      "left": 60,
+      "width": 254.1484375,
+      "height": 37.6484375
+    },
+    {
+      "id": "qrcode",
       "type": "qrcode",
       "placeholder": "{二维码}",
       "top": 50,
@@ -20,7 +29,7 @@
       "type": "value",
       "placeholder": "{商品名称}",
       "top": 50,
-      "left": 120,
+      "left": 140,
       "fontSize": 14,
       "height": 32,
       "width": 112,
@@ -32,8 +41,8 @@
       "id": 1598863712603,
       "type": "value",
       "placeholder": "{商品单价}",
-      "top": 150,
-      "left": 10,
+      "top": 110,
+      "left": 140,
       "fontSize": 14,
       "height": 32,
       "width": 112
@@ -42,31 +51,18 @@
       "id": 1598863713497,
       "type": "value",
       "placeholder": "{商品生成日期}",
-      "top": 10,
-      "left": 240,
+      "top": 0,
+      "left": 10,
       "fontSize": 14,
-      "height": 32,
-      "width": 112
+      "height": 34,
+      "width": 245.453125
     },
     {
       "id": 1598863745684,
       "type": "value",
       "placeholder": "{订单名称}",
-      "top": 10,
+      "top": 160,
       "left": 10,
-      "fontSize": 14,
-      "height": 32,
-      "width": 112,
-      "style": {
-        "fontWeight": "bold"
-      }
-    },
-    {
-      "id": 1598863750028,
-      "type": "value",
-      "placeholder": "{客订单户名称}",
-      "top": 10,
-      "left": 120,
       "fontSize": 14,
       "height": 32,
       "width": 112,
@@ -78,11 +74,47 @@
       "id": 1598863759434,
       "type": "value",
       "placeholder": "{订单下单日期}",
-      "top": 90,
-      "left": 120,
+      "top": 200,
+      "left": 10,
       "fontSize": 14,
+      "height": 36,
+      "width": 259.1875
+    },
+    {
+      "id": 1690622642526,
+      "type": "value",
+      "placeholder": "{客户地址}",
+      "top": 240,
+      "left": 10,
+      "height": 34,
+      "width": 142.703125,
+      "style": {
+        "fontSize": 14
+      }
+    },
+    {
+      "id": 1690622708159,
+      "type": "value",
+      "placeholder": "{打印日期}",
+      "top": 340,
+      "left": 130,
       "height": 32,
-      "width": 112
+      "width": 112,
+      "style": {
+        "fontSize": 14
+      }
+    },
+    {
+      "id": 1690623498824,
+      "type": "value",
+      "placeholder": "{商品类别}",
+      "top": 50,
+      "left": 260,
+      "height": 32,
+      "width": 112,
+      "style": {
+        "fontSize": 14
+      }
     }
   ],
   "style": {}
