@@ -36,9 +36,35 @@ npm install react-client-print
 import { ReactClientPrint } from 'react-client-print';
 
 <ReactClientPrint
-  templates={templates}
-  defaultTemplateName={defaultTemplateName}
-  dataSource={dataSource}
+  ref={storeRef}
+  templates={store.templates}
+  defaultTemplateName={store.defaultTemplateName}
+  dataSource={store.dataSource}
+  defaultFields={store.defaultFields}
+  onChange={async ({ template, operationType }) => {
+    if (operationType === 'create') {
+      const resp = await createTemplateSvc(template);
+      if (resp.code === 200) {
+        message.success('新建模板成功');
+      }
+    }
+
+    if (operationType === 'update') {
+      const resp = await updateTemplateSvc(template);
+      if (resp.code === 200) {
+        message.success('修改模板成功');
+      }
+    }
+
+    if (operationType === 'delete') {
+      const resp = await deleteTemplateSvc(template);
+      if (resp.code === 200) {
+        message.success('删除模板成功');
+      }
+    }
+
+    refresh();
+  }}
 />;
 ```
 

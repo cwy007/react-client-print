@@ -20,8 +20,8 @@ export interface PrintRef {
 }
 
 export interface ReactClientPrintProps {
-  dataSource?: any[];
-  templates?: any[];
+  dataSource?: Record<string, string>[];
+  templates?: TTemplate[];
   defaultTemplateName?: string;
   defaultFields: {
     name: string;

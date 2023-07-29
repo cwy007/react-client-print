@@ -29,7 +29,7 @@
       "type": "value",
       "placeholder": "{商品名称}",
       "top": 50,
-      "left": 140,
+      "left": 120,
       "fontSize": 14,
       "height": 32,
       "width": 112,
@@ -41,8 +41,8 @@
       "id": 1598863712603,
       "type": "value",
       "placeholder": "{商品单价}",
-      "top": 110,
-      "left": 140,
+      "top": 100,
+      "left": 120,
       "fontSize": 14,
       "height": 32,
       "width": 112
@@ -64,8 +64,8 @@
       "top": 160,
       "left": 10,
       "fontSize": 14,
-      "height": 32,
-      "width": 112,
+      "height": 34,
+      "width": 148.37890625,
       "style": {
         "fontWeight": "bold"
       }
@@ -85,9 +85,9 @@
       "type": "value",
       "placeholder": "{客户地址}",
       "top": 240,
-      "left": 10,
-      "height": 34,
-      "width": 142.703125,
+      "left": 160,
+      "height": 38,
+      "width": 216.3828125,
       "style": {
         "fontSize": 14
       }
@@ -109,7 +109,31 @@
       "type": "value",
       "placeholder": "{商品类别}",
       "top": 50,
-      "left": 260,
+      "left": 250,
+      "height": 32,
+      "width": 112,
+      "style": {
+        "fontSize": 14
+      }
+    },
+    {
+      "id": 1690624022463,
+      "type": "value",
+      "placeholder": "{客户名称}",
+      "top": 240,
+      "left": 10,
+      "height": 32,
+      "width": 112,
+      "style": {
+        "fontSize": 14
+      }
+    },
+    {
+      "id": 1690624155431,
+      "type": "value",
+      "placeholder": "{订单类型}",
+      "top": 160,
+      "left": 250,
       "height": 32,
       "width": 112,
       "style": {
