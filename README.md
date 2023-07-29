@@ -7,7 +7,7 @@
 
 ## demos
 
-[线上演示]()
+[线上演示](https://cwy007.github.io/react-client-print/demo/react-client-print)
 
 1.预览
 ![预览](https://p.ipic.vip/8q8erb.png)
@@ -134,6 +134,23 @@ $ yarn install
 
 # develop library by docs demo
 $ yarn start
+```
+
+## Deploy to Github Page
+
+```jsx
+// .dumirc.ts
+export default defineConfig({
+  outputPath: 'docs-dist',
+  base: process.env.NODE_ENV === 'production' ? '/react-client-print/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/react-client-print/' : '/',
+  // exportStatic: {},
+});
+
+
+// cli
+yarn docs:build && yarn run deploy
+
 ```
 
 ## Reference
