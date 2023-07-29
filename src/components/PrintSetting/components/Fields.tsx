@@ -13,9 +13,15 @@ const Fields = () => {
 
   return (
     <div>
-      <Space size={16}>
+      <Space
+        size={16}
+        align="center"
+        style={{ justifyContent: 'space-around', width: '100%' }}
+      >
         <Button
+          size="small"
           type="dashed"
+          style={{ width: 120 }}
           onClick={() => {
             store.addNode('todo', 'label');
           }}
@@ -25,7 +31,12 @@ const Fields = () => {
 
         {store.deleteFieldBtnDisabled ? (
           <Tooltip placement="top" title="请先在打印页面中选中要删除的字段">
-            <Button type="dashed" className="disabled-btn">
+            <Button
+              type="dashed"
+              className="disabled-btn"
+              size="small"
+              style={{ width: 120 }}
+            >
               删除字段
             </Button>
           </Tooltip>
@@ -39,7 +50,9 @@ const Fields = () => {
               store.removeNode(store.activeNode!.placeholder, true)
             }
           >
-            <Button type="dashed">删除字段</Button>
+            <Button type="dashed" size="small" style={{ width: 120 }}>
+              删除字段
+            </Button>
           </Popconfirm>
         )}
       </Space>
