@@ -67,8 +67,8 @@ const PrintSettingShow = () => {
         <Button onClick={() => history.back()}>取消</Button>
         <Button
           type="primary"
-          onClick={() => store.print()}
-          disabled={!!store.selectedTemplate}
+          onClick={() => window.print()}
+          disabled={!store.selectedTemplate}
         >
           打印
         </Button>

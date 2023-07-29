@@ -1,5 +1,6 @@
 import { flatten } from 'lodash';
 import { makeAutoObservable, observable, toJS } from 'mobx';
+import { updatePaperSize } from './components/PrintStyle/utils';
 import { TNode, TTemplate } from './components/TypographyCard/type';
 import { ReactClientPrintProps } from './ReactClientPrint';
 
@@ -21,9 +22,6 @@ class PrintStore {
 
   /** 业务数据 */
   dataSource: Record<string, any>[] = [];
-
-  /** 打印数据 */
-  printDataSource: TTemplate[] = [];
 
   /** 默认字段 */
   defaultFields: { name: string; fields: string[] }[] = [];
@@ -237,8 +235,12 @@ class PrintStore {
     } as TTemplate;
   }
 
-  /** 触发打印 */
-  print() {
+  /** 打印数据 */
+  get printDataSource() {
+    if (!this.selectedTemplate) return;
+
+    updatePaperSize(this.selectedTemplate);
+
     const printDataSource: TTemplate[] = [];
     this.dataSource.forEach((data) => {
       for (let i = 0; i < this.numberOfCopies; i += 1) {
@@ -247,7 +249,7 @@ class PrintStore {
         );
       }
     });
-    this.update({ printDataSource });
+    return printDataSource || [];
   }
 }
 

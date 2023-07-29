@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import PrintPreview from 'react-client-print/components/PrintPreview';
 import PrintSetting from 'react-client-print/components/PrintSetting';
+import PrintStyle from 'react-client-print/components/PrintStyle';
 import { TTemplate } from 'react-client-print/components/TypographyCard/type';
 import ClientPrintContext from 'react-client-print/context';
 import PrintStore from 'react-client-print/store';
@@ -100,7 +101,7 @@ const ReactClientPrint = ({
               isEditing: store.mode === 'edit',
             })}
           >
-            {/* <Print templates={showTemplate ? printTemplates : []} /> */}
+            <PrintStyle />
 
             <PrintPreview />
 
