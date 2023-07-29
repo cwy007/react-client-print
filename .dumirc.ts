@@ -8,7 +8,8 @@ export default defineConfig({
   exportStatic: {},
   themeConfig: {
     name: 'react-client-print',
-    logo: '/logo.png',
+    // logo: process.env.NODE_ENV === 'production' ? false : '/logo.png',
+    logo: false,
     socialLinks: {
       github: 'https://github.com/cwy007/react-client-print',
     },
