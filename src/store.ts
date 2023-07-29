@@ -134,6 +134,7 @@ class PrintStore {
   addNode(placeholder: string, type: TNode['type']) {
     if (placeholder.includes('二维码')) {
       this.addNodeToEditingTemplate({
+        id: 'qrcode',
         type: 'qrcode',
         placeholder,
         top: 0,
@@ -143,6 +144,7 @@ class PrintStore {
       } as TNode);
     } else if (placeholder.includes('条形码')) {
       this.addNodeToEditingTemplate({
+        id: 'barcode',
         top: 0,
         left: 0,
         width: 106,
