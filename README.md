@@ -140,6 +140,7 @@ $ yarn start
 
 ```jsx
 // .dumirc.ts
+// 我们把base和publicPath都设置成 /<REPO>/就可以了。
 export default defineConfig({
   outputPath: 'docs-dist',
   base: process.env.NODE_ENV === 'production' ? '/react-client-print/' : '/',
@@ -147,9 +148,10 @@ export default defineConfig({
   // exportStatic: {},
 });
 
+// logo 如何配置？现在本地可以显示，发到gh-page后加载logo.png资源地址不对 - TODO
 
 // cli
-yarn docs:build && yarn run deploy
+yarn run deploy
 
 ```
 
@@ -164,6 +166,10 @@ yarn docs:build && yarn run deploy
 - [npm publish](https://www.jianshu.com/p/0faaff26a2c8)
 
 > `npm login --registry=https://registry.npmjs.org`
+
+- [手动部署](https://d.umijs.org/guide/faq#%E6%89%8B%E5%8A%A8%E9%83%A8%E7%BD%B2)
+- [自动部署](https://d.umijs.org/guide/faq#%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2)
+- [dumi 站点部署到 github pages](https://www.jianshu.com/p/bbb33a759b32)
 
 ## LICENSE
 
