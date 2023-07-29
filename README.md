@@ -171,6 +171,8 @@ yarn run deploy
 - [自动部署](https://d.umijs.org/guide/faq#%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2)
 - [dumi 站点部署到 github pages](https://www.jianshu.com/p/bbb33a759b32)
 
+- [remote: Permission to git denied to github-actions[bot]](https://github.com/ad-m/github-push-action/issues/96#issuecomment-1647904286)
+
 ## LICENSE
 
 MIT
