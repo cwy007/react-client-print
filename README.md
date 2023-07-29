@@ -144,7 +144,7 @@ $ yarn start
 - [mobx](https://mobx.js.org/README.html)
 - [react](https://react.dev/learn)
 
--[npm publish](https://www.jianshu.com/p/0faaff26a2c8)
+- [npm publish](https://www.jianshu.com/p/0faaff26a2c8)
 
 > `npm login --registry=https://registry.npmjs.org`
 
