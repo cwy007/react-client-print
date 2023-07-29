@@ -93,6 +93,18 @@ class PrintStore {
     );
   }
 
+  get fieldsGroup() {
+    const noneLabelNodes = (this.edtingTemplate?.nodes || []).filter(
+      (v) => v.type !== 'label',
+    );
+    const selectedKeys = noneLabelNodes.map((v) => v.placeholder.slice(1, -1));
+    return (this.defaultFields || []).map((v) => ({
+      name: v.name,
+      fields: v.fields,
+      value: selectedKeys.filter((key) => v.fields.includes(key)),
+    }));
+  }
+
   /** 修改模板节点 */
   updateNode(payload: { activeNode: TNode }) {
     this.update({

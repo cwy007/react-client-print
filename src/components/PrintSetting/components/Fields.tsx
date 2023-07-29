@@ -1,4 +1,14 @@
-import { Button, Form, Input, Modal, Popconfirm, Space, Tooltip } from 'antd';
+import {
+  Button,
+  Checkbox,
+  Form,
+  Input,
+  Modal,
+  Popconfirm,
+  Space,
+  Tooltip,
+} from 'antd';
+import { difference } from 'lodash';
 import { autorun, toJS } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
@@ -58,7 +68,7 @@ const Fields = () => {
   });
 
   return (
-    <div>
+    <div className="fields-container">
       <Space
         size={16}
         align="center"
@@ -112,6 +122,39 @@ const Fields = () => {
           onCancel={() => store.update({ addLabelModalVisible: false })}
         />
       )}
+
+      {store.fieldsGroup.map((v) => (
+        <div className="field-group" key={v.name}>
+          <div className="field-group-name">{v.name}</div>
+          <Checkbox.Group
+            value={v.value}
+            onChange={(checkedValue) => {
+              console.log('checkedValue', checkedValue);
+              if (v.value.length === checkedValue.length) return;
+              if (v.value.length > checkedValue.length) {
+                const fieldNames = difference(v.value, checkedValue);
+                fieldNames.forEach((fieldName) => {
+                  store.removeNode(
+                    `{${fieldName}}`,
+                    store.activeNode?.placeholder === fieldName,
+                  );
+                });
+              } else {
+                const fieldName = difference(checkedValue, v.value)[0];
+                store.addNode(`{${fieldName}}`, 'value');
+              }
+            }}
+          >
+            <Space size={8} wrap>
+              {v.fields.map((fieldName) => (
+                <Checkbox key={fieldName} value={fieldName}>
+                  {fieldName}
+                </Checkbox>
+              ))}
+            </Space>
+          </Checkbox.Group>
+        </div>
+      ))}
     </div>
   );
 };
